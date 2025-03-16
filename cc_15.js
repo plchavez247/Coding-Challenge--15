@@ -27,3 +27,9 @@ function addRiskItem(riskName, riskLevel, department){
      resolveButton.addEventListener("click", function(){
         riskDashboard.removeChild(riskCard);
      });
+
+     //Task 6: Handling Event Propagation
+     
+
+
+}
