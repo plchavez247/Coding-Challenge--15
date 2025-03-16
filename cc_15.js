@@ -29,7 +29,10 @@ function addRiskItem(riskName, riskLevel, department){
      });
 
      //Task 6: Handling Event Propagation
-     
+     riskCard.addEventListener("click", function (event){
+        event.stopPropagation();
+        console.log("Risk Card Clicked")
+     });
 
 
 }
