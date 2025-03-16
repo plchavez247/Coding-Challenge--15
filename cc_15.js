@@ -10,3 +10,20 @@ function addRiskItem(riskName, riskLevel, department){
     riskSeverity.textContent = `Risk Level: ${riskLevel}`;
     const departmentParagraph = document.createElement("p");
     departmentParagraph.textContent = `Department: ${department}`;
+
+    //Task 4: Categorizing Risks by Level
+     if(riskLevel === "Low"){
+        riskCard.classList.add("low-severity");
+     } else if (riskLevel === "Medium"){
+        riskCard.classList.add("medium-severity")
+     } else if (riskLevel === "High"){
+        riskCard.classList.add("high-severity")
+     }//Categorized risk level by color
+
+     //Task 3: removing Risk Items
+     const resolveButton = document.createElement("button");
+     resolveButton.textContent = "Resolve";
+     resolveButton.classList.add("resolve-button");
+     resolveButton.addEventListener("click", function(){
+        riskDashboard.removeChild(riskCard);
+     });
