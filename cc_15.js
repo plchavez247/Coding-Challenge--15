@@ -1,11 +1,12 @@
 //Task 1 - Creating the Base Structure
 const riskDashboard = document.getElementById("riskDashboard");
 const riskForm = document.getElementById("riskForm");
-console.log("Risk Dashboard Loaded")
+const increaseRiskButton = document.getElementById("increaseRiskButton");
+console.log("Risk Dashboard Loaded");
 //Task 2 - Adding Risk Items Dynamically
 
 function addRiskItem(riskName, riskLevel, department){
-    const riskDashboard = docuemtn .getElementById("riskDashboard");
+    const riskDashboard = document.getElementById("riskDashboard");
     const riskCard = document.createElement("div");
     riskCard.setAttribute("class","risk-card");
     const titleHeading =document.createElement("h3");
@@ -38,7 +39,7 @@ function addRiskItem(riskName, riskLevel, department){
         console.log("Risk Card Clicked")
      });
 
-     riskCard.appendChild(nameHeading);
+     riskCard.appendChild(titleHeading);
      riskCard.appendChild(riskSeverity);
      riskCard.appendChild(departmentParagraph);
      riskCard.appendChild(resolveButton);// Appending the elements
@@ -48,11 +49,11 @@ function addRiskItem(riskName, riskLevel, department){
 }
 
 riskForm.addEventListener("submit", (event) => {
-    event.preventdefault();
-    const riskName = document.getElementBy("riskName").value;
+    event.preventDefault();
+    const riskName = document.getElementById("riskName").value;
     const riskLevel = document.getElementById("riskLevel").value;
     const department = document.getElementById("department").value;
-    addRiskItem(riskName, department, riskLevel);
+    addRiskItem(riskName, riskLevel, department);
     riskForm.reset();//event listener for form submission
 });
 
@@ -61,16 +62,16 @@ riskForm.addEventListener("submit", (event) => {
 increaseRiskButton.addEventListener("click", function(){
     const riskCards = document.querySelectorAll(".risk-card");
     riskCards.forEach((riskCard) =>{
-        const riskLevelParagraph = riskCard.querySelector("p:last-of-type");//looked up what last-of-type is , it selects the last <p> element
+        const riskLevelParagraph = riskCard.querySelector("p:first-of-type");//looked up what last-of-type is , it selects the last <p> element
         let currentRiskLevel = riskLevelParagraph.textContent.replace("Risk Level: ", ""); //replacing text content
          if(currentRiskLevel === "Low"){
             currentRiskLevel = "Medium";
-            riskCard.classList.remove("low-risk");
-            riskCard.classList.add("medium-risk");
+            riskCard.classList.remove("low-severity");
+            riskCard.classList.add("medium-severity");
          } else if (currentRiskLevel=== "Medium"){
             currentRiskLevel = "High";
-            riskCard.classList.remove("medium-risk");
-            riskCard.classList.add("high-risk");
+            riskCard.classList.remove("medium-severity");
+            riskCard.classList.add("high-severity");
          }
          riskLevelParagraph.textContent = `Risk Level: ${currentRiskLevel}`;
     });
