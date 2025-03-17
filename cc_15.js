@@ -1,3 +1,7 @@
+//Task 1 - Creating the Base Structure
+const riskDashboard = document.getElementById("riskDashboard");
+const riskForm = document.getElementById("riskForm");
+console.log("Risk Dashboard Loaded")
 //Task 2 - Adding Risk Items Dynamically
 
 function addRiskItem(riskName, riskLevel, department){
@@ -34,5 +38,46 @@ function addRiskItem(riskName, riskLevel, department){
         console.log("Risk Card Clicked")
      });
 
+     riskCard.appendChild(nameHeading);
+     riskCard.appendChild(riskSeverity);
+     riskCard.appendChild(departmentParagraph);
+     riskCard.appendChild(resolveButton);// Appending the elements
+     riskDashboard.appendChild(riskCard);// New risk card to the dashboard;
+
 
 }
+
+riskForm.addEventListener("submit", (event) => {
+    event.preventdefault();
+    const riskName = document.getElementBy("riskName").value;
+    const riskLevel = document.getElementById("riskLevel").value;
+    const department = document.getElementById("department").value;
+    addRiskItem(riskName, department, riskLevel);
+    riskForm.reset();//event listener for form submission
+});
+
+//Task 5: Implementing Bulk Updates
+
+increaseRiskButton.addEventListener("click", function(){
+    const riskCards = document.querySelectorAll(".risk-card");
+    riskCards.forEach((riskCard) =>{
+        const riskLevelParagraph = riskCard.querySelector("p:last-of-type");//looked up what last-of-type is , it selects the last <p> element
+        let currentRiskLevel = riskLevelParagraph.textContent.replace("Risk Level: ", ""); //replacing text content
+         if(currentRiskLevel === "Low"){
+            currentRiskLevel = "Medium";
+            riskCard.classList.remove("low-risk");
+            riskCard.classList.add("medium-risk");
+         } else if (currentRiskLevel=== "Medium"){
+            currentRiskLevel = "High";
+            riskCard.classList.remove("medium-risk");
+            riskCard.classList.add("high-risk");
+         }
+         riskLevelParagraph.textContent = `Risk Level: ${currentRiskLevel}`;
+    });
+});
+addRiskItem("Data Breach", "High", "IT");
+addRiskItem("Supply Chain Disruption", "Medium", "Operations");
+addRiskItem("Market Fluctuations", "High", "Finance");
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+addRiskItem("Employee Retention", "Low", "HR");
