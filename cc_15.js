@@ -13,7 +13,7 @@ function addRiskItem(riskName, riskLevel, department){
     const riskSeverity  = document.createElement("p");
     riskSeverity.textContent = `Risk Level: ${riskLevel}`;
     const departmentParagraph = document.createElement("p");
-    departmentParagraph.textContent = `Department: ${department}`;
+    departmentParagraph.textContent = `Department: ${department}`;//creating a new risk card with the name, risk lvl, department
 
     //Task 4: Categorizing Risks by Level
      if(riskLevel === "Low"){
@@ -21,7 +21,7 @@ function addRiskItem(riskName, riskLevel, department){
      } else if (riskLevel === "Medium"){
         riskCard.classList.add("medium-severity")
      } else if (riskLevel === "High"){
-        riskCard.classList.add("high-severity")
+        riskCard.classList.add("high-severity")// adding different color backgrounds for the risk level
      }//Categorized risk level by color
 
      //Task 3: removing Risk Items
@@ -29,13 +29,13 @@ function addRiskItem(riskName, riskLevel, department){
      resolveButton.textContent = "Resolve";
      resolveButton.classList.add("resolve-button");
      resolveButton.addEventListener("click", function(){
-        riskDashboard.removeChild(riskCard);
+        riskDashboard.removeChild(riskCard);//including a resolve button
      });
 
      //Task 6: Handling Event Propagation
      riskCard.addEventListener("click", function (event){
         event.stopPropagation();
-        console.log("Risk Card Clicked")
+        console.log("Risk Card Clicked")//using stopPropagation so card does not trigger unwanted actions
      });
 
      riskCard.appendChild(titleHeading);
@@ -61,7 +61,7 @@ riskForm.addEventListener("submit", (event) => {
 increaseRiskButton.addEventListener("click", function(){
     const riskCards = document.querySelectorAll(".risk-card");
     riskCards.forEach((riskCard) =>{
-        const riskLevelParagraph = riskCard.querySelector("p:nth-child(2)");//looked up what last-of-type is , it selects the last <p> element
+        const riskLevelParagraph = riskCard.querySelector("p:nth-child(2)");//looked up what nth-child(2) is , it selects the last <p> element that contains risk level information
         let currentRiskLevel = riskLevelParagraph.textContent.replace("Risk Level: ", ""); //replacing text content
         if(currentRiskLevel=== "High") return;
          if(currentRiskLevel === "Low"){
