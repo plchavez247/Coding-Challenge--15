@@ -3,16 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Risk Management Dashboard</title>
+    <style>
+        body{ font-family: Arial, sans-serif ; margin: 20px;}
+
+        #riskDashboard{
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .risk-card{
+            padding:10px;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .low-severity{
+            background-color: green;
+            color:white
+        }
+        .medium-severity{
+            background-color: yellow; 
+            color: black
+        }
+        .high-severity{ background-color: red;
+        color:white;}
+        .resolve-button{
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Risk Management Dashboard</h1>
-    <div id="riskDashboard"></div>
-    <form action="riskForm">
-        <label for="riskInput">New Risk Item:</label>
-        <input type="text" id="riskInput" required>
-        <button type="submit">Add Risk</button>
+    <form id="riskForm"></form>
+    <input type="text" id="riskName" placeholder = "Risk Name" required>
+    <select id="riskLevel">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+    </select>
+    <input type="text" id="department" placeholder = "Department" required>
+    <button type="submit">Add Risk</button>
+    
     </form>
+    <div id="riskDashboard"></div>
+    <button id="increaseRiskButton">Increase Risk Levels</button>
     <script src="cc_15.js"></script>
 </body>
 </html>
