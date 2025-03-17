@@ -6,7 +6,6 @@ console.log("Risk Dashboard Loaded");
 //Task 2 - Adding Risk Items Dynamically
 
 function addRiskItem(riskName, riskLevel, department){
-    const riskDashboard = document.getElementById("riskDashboard");
     const riskCard = document.createElement("div");
     riskCard.setAttribute("class","risk-card");
     const titleHeading =document.createElement("h3");
@@ -62,8 +61,9 @@ riskForm.addEventListener("submit", (event) => {
 increaseRiskButton.addEventListener("click", function(){
     const riskCards = document.querySelectorAll(".risk-card");
     riskCards.forEach((riskCard) =>{
-        const riskLevelParagraph = riskCard.querySelector("p:first-of-type");//looked up what last-of-type is , it selects the last <p> element
+        const riskLevelParagraph = riskCard.querySelector("p:nth-child(2)");//looked up what last-of-type is , it selects the last <p> element
         let currentRiskLevel = riskLevelParagraph.textContent.replace("Risk Level: ", ""); //replacing text content
+        if(currentRiskLevel=== "High") return;
          if(currentRiskLevel === "Low"){
             currentRiskLevel = "Medium";
             riskCard.classList.remove("low-severity");
